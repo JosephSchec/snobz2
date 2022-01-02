@@ -1,12 +1,14 @@
+import logo from './images/logo.png';
+import './styles.css';
+import './output.json';
+require("babel-polyfill");
 (async function () {
-    'use strict';
-    const output = await fetch("output.json");
+    const output = await fetch('./output.json');
     try {
         if (!output.ok) {
             throw new Error('NOT OK OUTPUT.JSON');
         }
         const data = await output.json();
-
         let list = document.getElementById('listIcon');
         list.addEventListener('click', function (e) {
             /***Stops autoreload */
@@ -20,8 +22,8 @@
                 middleS.childNodes.forEach((item) => { middleS.removeChild(item); });
             }
             middleS.style.backgroundColor = 'white';
-            middleS.style.backgroundImage = "url('images/logo.png')";
-            document.body.style.backgroundImage = "url('images/logo.png')";
+            middleS.style.backgroundImage = `url('${logo}')`;
+            document.body.style.backgroundImage = `url('${logo}')`;
 
 
             /****Create Continents */
@@ -195,6 +197,7 @@
                                                     data.forEach(shop => {
                                                         if (shopBut.id === shop.Name) {
                                                             bodyLogo.src = `${shop.Logo}`;
+                                                            bodyLogo.onerror = () => { bodyLogo.src = "" }
                                                             bodyContent.innerHTML = `${shop.Name}<br>${shop.City},${shop.Region}<br>
                                                             <a href=${shop.Link} target=_blank>Visit Here</a>`;
                                                         }
@@ -208,7 +211,6 @@
                                                     middleS.appendChild(specificShop);
 
                                                 }
-
                                             });
                                         });
                                     });

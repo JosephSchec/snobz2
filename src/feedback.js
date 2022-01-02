@@ -1,5 +1,5 @@
-(function () {
-    'use strict';
+import './styles.css';
+
     let feedback = document.getElementById("feedback");
     feedback.setAttribute('data-bs-toggle', 'modal');
     feedback.setAttribute('data-bs-target', '#modalId');
@@ -104,4 +104,3 @@
 
     }
     );
-}());

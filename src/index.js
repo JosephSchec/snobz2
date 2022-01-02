@@ -1,6 +1,10 @@
+import './styles.css';
+import './output.json';
+let L = require('leaflet');
+require("leaflet_css");
+require("leaflet_marker");
+require("babel-polyfill");
 (async function () {
-    'use strict';
-
     // marker.bindPopup("popupContent").openPopup();
     // marker2.bindTooltip("my tooltip text",{ direction:'top', offset:[-15,-10]}).openTooltip();
     // let hereLat = 40.06075726817605;
@@ -23,7 +27,6 @@
     }
     /********* Map, Pin and ToolTip Setup  **************************/
 
-    let L = window.L;
     let map = L.map('map', {
         center: [usLat, usLng],
         zoom: 3,
@@ -43,7 +46,12 @@
             noWrap: true,
         });
     layer.addTo(map);
-
+    delete L.Icon.Default.prototype._getIconUrl;
+    L.Icon.Default.mergeOptions({
+        iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+        iconUrl: require('leaflet/dist/images/marker-icon.png'),
+        shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+    });
 
     function createPin(lat, lng) {
         return L.marker([lat, lng]).addTo(map);
@@ -56,13 +64,12 @@
     /*************** create pin and tooltip for each item in json *******************/
     async function placePins() {
         document.getElementById('homeIcon').classList.add('active');
-        const output = await fetch("output.json");
+        const output = await fetch('./output.json');
         try {
             if (!output.ok) {
                 throw new Error('NOT OK OUTPUT.JSON');
             }
             const data = await output.json();
-
             let middle = document.getElementById("map");
 
             let offCanv = document.createElement('div');
@@ -143,6 +150,7 @@
 
                     let setImg = document.getElementById('img');
                     setImg.src = `${element.Logo}`;
+                    setImg.onerror=()=>{setImg.src="";}
 
                     let setCity = document.getElementById('city');
                     setCity.innerHTML = `<span>City : </span> <br/> ${element.City}`;
@@ -162,8 +170,9 @@
 
 
                 let search = document.getElementById('search');
-
+                
                 /***Search bar */
+                
                 search.onclick = ((e) => {
                     e.preventDefault();
                     data.forEach(store => {
@@ -192,17 +201,14 @@
     /************* After Loading Pins And Get Location     ************************/
     await placePins();
     getCurr();
-    if (window.innerWidth < 600) {
+    
         let controller = document.querySelector('.leaflet-control-container');
         controller.style.visibility = 'hidden';
-    } else {
-        let topControl = document.querySelector('.leaflet-top');
-        topControl.classList.add('mt-5', 'pt-3');
-    }
+   
 
 
     let mapIcon = document.getElementById('mapIcon');
-    mapIcon.addEventListener('click', async  ()=> {
+    mapIcon.addEventListener('click', async () => {
         await placePins();
         getCurr();
     });
