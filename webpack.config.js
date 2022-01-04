@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const CompressionPlugin = require("compression-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 module.exports = {
     mode: 'production',
@@ -8,7 +9,7 @@ module.exports = {
     entry: {
         about: './src/about.js',
         feedback: './src/feedback.js',
-        index: './src/index.js',
+        index: ["babel-polyfill",'./src/index.js'],
         list: './src/list.js',
         share: './src/share.js'
     },
@@ -34,6 +35,7 @@ module.exports = {
             ],
         }),
 
+        new CompressionPlugin(),
         new ESLintPlugin()
     ], resolve: {
         extensions: ['', '.html', '.js', '.json', '.scss', '.css'],

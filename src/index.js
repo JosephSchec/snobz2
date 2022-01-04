@@ -3,7 +3,6 @@ import './output.json';
 let L = require('leaflet');
 require("leaflet_css");
 require("leaflet_marker");
-require("babel-polyfill");
 (async function () {
     // marker.bindPopup("popupContent").openPopup();
     // marker2.bindTooltip("my tooltip text",{ direction:'top', offset:[-15,-10]}).openTooltip();
