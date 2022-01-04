@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const CompressionPlugin = require("compression-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 module.exports = {
     mode: 'production',
@@ -35,7 +34,6 @@ module.exports = {
             ],
         }),
 
-        new CompressionPlugin(),
         new ESLintPlugin()
     ], resolve: {
         extensions: ['', '.html', '.js', '.json', '.scss', '.css'],
