@@ -46,6 +46,10 @@ module.exports = {
             leaflet_marker_shadow: __dirname + "/node_modules/leaflet/dist/images/marker-shadow.png"
         }
     },
+    cache: {
+        type: 'filesystem',
+        compression: 'gzip',
+      },
     module: {
         rules: [
             {
