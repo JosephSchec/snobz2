@@ -1,7 +1,6 @@
 import logo from './images/logo.png';
 import './styles.css';
 import './output.json';
-require("babel-polyfill");
 (async function () {
     const output = await fetch('./output.json');
     try {
@@ -13,6 +12,7 @@ require("babel-polyfill");
         list.addEventListener('click', function (e) {
             /***Stops autoreload */
             e.preventDefault();
+            console.log('object')
             /***Empty Middle */
             let middleS = document.getElementById("size");
             middleS.classList.forEach(el => { middleS.classList.remove(el); });
