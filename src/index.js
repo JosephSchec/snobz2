@@ -25,6 +25,12 @@ require("leaflet_marker");
             map.setView([pos.coords.latitude, pos.coords.longitude], 10);
         }
     }
+    function getDirections() {
+     navigator.geolocation.getCurrentPosition(pos=>{
+        return `${pos.coords.latitude},${pos.coords.longitude}`
+     });
+    }
+    
     /********* Map, Pin and ToolTip Setup  **************************/
 
     let map = L.map('map', {
@@ -105,6 +111,12 @@ require("leaflet_marker");
                     setLink.href = `${element.Link}`;
                     setLink.target = '_blank';
 
+                    let setDir = document.getElementById('directions');
+                    setDir.innerHTML = (`Directions for ${element.Name}`);
+                    const currLocation=getDirections();
+                    console.log(currLocation);
+                    setDir.href = `https://www.google.com/maps/dir/${currLocation}/${element.LatLong}`;
+                    setDir.target = '_blank';
                 });
 
 
