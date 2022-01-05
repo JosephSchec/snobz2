@@ -12,7 +12,6 @@ import './output.json';
         list.addEventListener('click', function (e) {
             /***Stops autoreload */
             e.preventDefault();
-            console.log('object')
             /***Empty Middle */
             let middleS = document.getElementById("size");
             middleS.classList.forEach(el => { middleS.classList.remove(el); });
