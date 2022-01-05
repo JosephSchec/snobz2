@@ -25,12 +25,7 @@ require("leaflet_marker");
             map.setView([pos.coords.latitude, pos.coords.longitude], 10);
         }
     }
-    function getDirections() {
-     navigator.geolocation.getCurrentPosition(pos=>{
-        return `${pos.coords.latitude},${pos.coords.longitude}`
-     });
-    }
-    
+
     /********* Map, Pin and ToolTip Setup  **************************/
 
     let map = L.map('map', {
@@ -107,15 +102,16 @@ require("leaflet_marker");
                     setCont.innerHTML = `<span>Continent : </span> <br/> ${element.Continent}<br/><br/><span>Link : </span> `;
 
                     let setLink = document.getElementById('link');
-                    setLink.innerHTML = (` ${element.Name}`);
+                    setLink.innerHTML = (` ${element.Name} Site`);
                     setLink.href = `${element.Link}`;
                     setLink.target = '_blank';
 
                     let setDir = document.getElementById('directions');
-                    setDir.innerHTML = (`Directions for ${element.Name}`);
-                    const currLocation=getDirections();
-                    console.log(currLocation);
-                    setDir.href = `https://www.google.com/maps/dir/${currLocation}/${element.LatLong}`;
+                    setDir.innerHTML = (`Directions`);
+
+                    navigator.geolocation.getCurrentPosition(pos => {
+                        setDir.href = `https://www.google.com/maps/dir/${`${pos.coords.latitude},${pos.coords.longitude}`}/${element.LatLong}`;
+                    });
                     setDir.target = '_blank';
                 });
 

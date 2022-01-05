@@ -64,7 +64,7 @@ export default function(){
     offCanvBody.appendChild(link);
     /********Directions********* */
     let directions = document.createElement('a');
-    directions.classList.add('fs-3', 'd-inline-block');
+    directions.classList.add('fs-3', 'd-block');
     directions.id = 'directions';
     offCanvBody.appendChild(directions);
 }
