@@ -1,7 +1,7 @@
 {
-  "name": "Snobz2",
-  "version": "1.0.2",
-  "description": "After a 3 week break from class I have completed my first project . Welcome to Snobz where one can explore coffee shops around the globe. This site was previously built by my friend on App Sheet , where I then took it upon myself to make a faster cleaner looking site. Most of the (vanilla) JavaScript is self taught from google, as well as working with leafletjs API. Later on (after returning to class and learning) I hope to use more common conventions and clean up up the code but until then....",
+  "name": "snobz2",
+  "version": "1.1.2",
+  "description": "Making craft coffee easy to find",
   "main": "index.js",
   "private": "true",
   "scripts": {
@@ -26,7 +26,6 @@
     "dotenv-webpack": "^7.0.3",
     "eslint": "^8.5.0",
     "eslint-webpack-plugin": "^3.1.1",
-    "html-minimizer-webpack-plugin": "^3.5.0",
     "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.65.0",
