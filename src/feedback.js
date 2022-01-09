@@ -1,4 +1,7 @@
 import './styles.css';
+//import {password} from './password.js'
+
+const password = process.env.PASS
 let offCanvas = document.getElementById('offcanvas');
 let feedback = document.getElementById("feedback");
 feedback.setAttribute('data-bs-toggle', 'modal');
@@ -83,7 +86,7 @@ feedback.addEventListener('click', (e) => {
             window.Email.send({
                 Host: "smtp.gmail.com",
                 Username: "snobzfeed@gmail.com",
-                Password: 'kyicomxpubybdzie',
+                Password: password,
                 To: 'snobzfeed@gmail.com',
                 From: "snobzfeed@gmail.com",
                 Subject: "Heres Some Feedback",

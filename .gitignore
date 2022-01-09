@@ -1,3 +1,7 @@
+#git rm --cached filename 
 node_modules/
 Coffee.csv
-
+.eslintrc
+src/password.js
+.vscode
+src/.env
