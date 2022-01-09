@@ -37,7 +37,9 @@ module.exports = {
         }),
         new CompressionPlugin({ algorithm: "gzip" }),
         new ESLintPlugin(),
-        new Dotenv()
+        new Dotenv({
+            path:'./src/.env'
+        })
     ], resolve: {
         extensions: ['', '.html', '.js', '.json', '.scss', '.css'],
         alias: {
